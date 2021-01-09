@@ -1,0 +1,36 @@
+body {
+  overflow: hidden;
+}
+
+.window-container {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.sliding-background {
+  height: 100vh;
+  position: absolute;
+  width: 5076px;
+  background: url('../images/underwater-wide.jpg') repeat-x;
+  background-size: contain;
+}
+
+.score-board {
+  position: absolute;
+  position: absolute;
+  color: #ffd537;
+  font-size: 100px;
+  z-index: 1;
+}
+
+@keyframes slide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-1692px, 0, 0);
+  }
+}

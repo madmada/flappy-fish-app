@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'KarmaFuture';
+  src: url('./fonts/KarmaFuture.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'KarmaSuture';
+  src: url('./fonts/KarmaSuture.ttf') format('truetype');
+} 
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'KarmaFuture';
+  overflow: hidden;
+}
