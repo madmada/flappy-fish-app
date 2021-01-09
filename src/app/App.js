@@ -122,10 +122,6 @@ class App extends Component {
     });
   }
 
-  updateAudioBreakPoint(value) {
-    this.setState({ audioDetectBreakpoint: value });
-  }
-
   render() {
     const playerLeftPosition = this.state.playerXPosition;
     const playerYPosition = this.state.playerYPosition;
@@ -144,8 +140,6 @@ class App extends Component {
                 startButtonAction={this.startRound}
                 score={this.state.score}
                 bestScore={this.state.bestScore}
-                audioDetectBreakpoint={this.state.audioDetectBreakpoint}
-                setNewBreakPoint={this.updateAudioBreakPoint}
               />
             </>
           ) : (

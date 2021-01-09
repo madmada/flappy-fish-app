@@ -25,7 +25,6 @@ export const initialAppState = {
   velocity: 0,
   pipes: getInitialPipes(),
   pipeSpeed: 7,
-  audio: null,
   menuVisible: false,
   score: 0,
   bestScore: 0,
