@@ -1,4 +1,9 @@
 .menu {
+  --button-color: #3a3a3c;
+  --button-text-color: white;
+}
+
+.menu {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,13 +19,13 @@
   cursor: default;
 }
 
-.menu__button-start {
+.menu__button {
   margin-top: 50px;
   font-family: 'KarmaSuture';
-  background-color: #5fb124;
-  border: 2px solid black;
+  background-color: var(--button-color);
+  border: 4px solid black;
   box-shadow: 3px 5px black;
-  color: white;
+  color: var(--button-text-color);
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -29,19 +34,27 @@
   cursor: pointer;
 }
 
-.menu__button-scores {
-  margin-top: 50px;
-  font-family: 'KarmaSuture';
-  background-color: #3a3a3c;
-  border: 2px solid black;
+.menu__button:hover {
+  box-shadow: 8px 10px black;
+  transform: translate(-5px, -5px);
+}
+
+.menu__button:active {
   box-shadow: 3px 5px black;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 20px;
-  cursor: pointer;
+  transform: translate(0, 0);
+}
+
+.menu__button:focus {
+  outline: none;
+}
+
+.menu__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.menu__button--green {
+  background-color: #5fb124;
 }
 
 .menu__score {

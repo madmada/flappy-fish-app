@@ -19,6 +19,7 @@ export const getInitialPipes = () => {
 };
 
 export const initialAppState = {
+  playerName: undefined,
   playerYPosition: window.innerHeight / 2,
   playerXPosition: window.innerWidth * 0.25,
   gravity: 0.8,

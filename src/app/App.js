@@ -9,6 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = initialAppState;
+    this.setPlayerName = this.setPlayerName.bind(this);
     this.moveUp = this.moveUp.bind(this);
     this.startRound = this.startRound.bind(this);
     this.endRound = this.endRound.bind(this);
@@ -16,6 +17,12 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({ menuVisible: true, score: null });
+  }
+
+  setPlayerName(name) {
+    this.setState({
+      playerName: name
+    });
   }
 
   startRound() {
@@ -35,7 +42,6 @@ class App extends Component {
   }
 
   endRound() {
-
     clearInterval(this.interval);
     this.setState({
       menuVisible: true,
@@ -140,6 +146,8 @@ class App extends Component {
                 startButtonAction={this.startRound}
                 score={this.state.score}
                 bestScore={this.state.bestScore}
+                playerName={this.state.playerName}
+                setPlayerName={this.setPlayerName}
               />
             </>
           ) : (
