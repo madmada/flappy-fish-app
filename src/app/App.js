@@ -31,6 +31,7 @@ class App extends Component {
 
     const stateToUpdate = {
       ...initialAppState,
+      playerName: this.state.playerName,
       bestScore: score > bestScore ? score : bestScore,
       pipes: getInitialPipes(),
     };
