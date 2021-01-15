@@ -91,14 +91,24 @@
 }
 
 .menu__scores {
-  display: flex;
-  flex-direction: row;
   font-family: 'KarmaSuture';
   color: white;
   font-size: 20px;
   font-weight: bold;
 }
 
+.menu__scores-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 300px;
+  margin-bottom: 10px;
+}
+
 .menu__scores-username {
   margin-right: 80px;
+}
+
+.menu__scores-item--green {
+  color: rgb(0, 199, 0);
 }

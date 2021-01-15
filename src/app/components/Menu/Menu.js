@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import classNames from 'classnames';
 import { PlayerNameModal } from '../PlayerNameModal';
 
 import './Menu.scss';
@@ -14,16 +15,32 @@ export const Menu = ({ startButtonAction, score, bestScore, playerName, setPlaye
     setScoresVisible(!scoresVisible);
   };
 
-  const renderHighScores = () => (
-    // TODO
-    <div className={'menu__scores'}>
-      <div className={'menu__scores-username'}>
-        MAD
-      </div>
-      <div className={'menu__scores-score'}>
-        123
-      </div>
+  // @ts-ignore
+  // eslint-disable-next-line quotes
+  const mockedResults = [{ "username": "champion", "score": 797, "resultDate": "2021-01-15T17:31:50.425537Z" }, { "username": "user1", "score": 748, "resultDate": "2021-01-15T17:31:50.287728Z" }, { "username": "user9", "score": 654, "resultDate": "2021-01-15T17:31:50.420791Z" }, { "username": "champion", "score": 619, "resultDate": "2021-01-15T17:31:50.415740Z" }, { "username": "user7", "score": 590, "resultDate": "2021-01-15T17:31:50.410727Z" }, { "username": "user5", "score": 471, "resultDate": "2021-01-15T17:31:50.401637Z" }, { "username": "champion", "score": 466, "resultDate": "2021-01-15T17:31:50.397167Z" }, { "username": "champion", "score": 163, "resultDate": "2021-01-15T17:31:50.406428Z" }, { "username": "champion", "score": 53, "resultDate": "2021-01-15T17:31:50.387842Z" }, { "username": "user3", "score": 30, "resultDate": "2021-01-15T17:31:50.392621Z" }];
 
+  const renderHighScores = () => (
+    <div className={'menu__scores'}>
+      {mockedResults.map((result, index) => {
+        const isMyResult = playerName === result.username;
+
+        return (
+          <div
+            className={classNames('menu__scores-item', {
+              'menu__scores-item--green': isMyResult
+            })}
+            key={`result-${index}`}
+          >
+            <div className={'menu__scores-username'}>
+              {result.username}
+            </div>
+            <div className={'menu__scores-score'}>
+              {result.score}
+            </div>
+          </div>
+        );
+      }
+      )}
     </div>
   );
 
