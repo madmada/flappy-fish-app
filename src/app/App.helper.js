@@ -1,5 +1,7 @@
 // CONSTANTS, SETTINGS, HELPER FUNCTIONS
 
+export const apiUrl = 'http://localhost:8080';
+
 export const PLAYER_RADIUS = 30;
 
 export const getInitialPipes = () => {
@@ -28,5 +30,6 @@ export const initialAppState = {
   pipeSpeed: 7,
   menuVisible: false,
   score: 0,
-  bestScore: 0,
+  playerBestScore: 0,
+  results: [],
 };

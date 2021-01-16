@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import KeyHandler, { KEYPRESS } from 'react-key-handler';
 import { Pipe, Player, Menu } from './components';
-import { initialAppState, getInitialPipes, PLAYER_RADIUS } from './App.helper';
+import { apiUrl, initialAppState, getInitialPipes, PLAYER_RADIUS } from './App.helper';
 
 import './App.scss';
 
@@ -17,6 +17,17 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({ menuVisible: true, score: null });
+    this.getResults();
+  }
+
+  getResults() {
+    fetch(`${apiUrl}/results?sort=desc&top=15`)
+      .then(res => res.json())
+      .then(
+        (data) => {
+          this.setState({ results: data });
+        }
+      );
   }
 
   setPlayerName(name) {
@@ -26,14 +37,17 @@ class App extends Component {
   }
 
   startRound() {
-    const score = this.state.score;
-    const bestScore = this.state.bestScore;
+    const playerBestScoreObject = this.state.results
+      .find(result => result.username === this.state.playerName);
+    const playerBestScore = playerBestScoreObject ? playerBestScoreObject.score : 0;
+
 
     const stateToUpdate = {
       ...initialAppState,
+      results: this.state.results,
       playerName: this.state.playerName,
-      bestScore: score > bestScore ? score : bestScore,
       pipes: getInitialPipes(),
+      playerBestScore,
     };
 
     this.setState(stateToUpdate);
@@ -42,8 +56,23 @@ class App extends Component {
     }, 30);
   }
 
+  postResult() {
+    const now = new Date();
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        'username': this.state.playerName,
+        'score': this.state.score,
+        'resultDate': now.toISOString()
+      })
+    };
+    fetch(`${apiUrl}/results`, requestOptions).then(() => this.getResults());
+  }
+
   endRound() {
     clearInterval(this.interval);
+    this.postResult();
     this.setState({
       menuVisible: true,
     });
@@ -142,13 +171,13 @@ class App extends Component {
 
           {this.state.menuVisible ? (
             <>
-              <KeyHandler keyEventName={KEYPRESS} keyValue={'Enter'} onKeyHandle={this.startRound} />
               <Menu
                 startButtonAction={this.startRound}
                 score={this.state.score}
-                bestScore={this.state.bestScore}
+                results={this.state.results}
                 playerName={this.state.playerName}
                 setPlayerName={this.setPlayerName}
+                playerBestScore={this.state.playerBestScore}
               />
             </>
           ) : (

@@ -11,7 +11,8 @@ export const PlayerNameModal = ({
   const [newPlayerName, setNewPlayerName] = React.useState(undefined);
   const [emptyErrorVisible, setEmptyErrorVisible] = React.useState(false);
 
-  const onSave = () => {
+  const onSave = (e) => {
+    e.preventDefault();
     if (newPlayerName) {
       setPlayerName(newPlayerName);
       setModalVisible(false);
@@ -22,7 +23,7 @@ export const PlayerNameModal = ({
 
   return (
     <div className={'player-name-modal__wrapper'}>
-      <div className={'player-name-modal'}>
+      <form className={'player-name-modal'} onSubmit={onSave}>
         <p className={'player-name-modal__header'}>
           {currentPlayerName ? 'Set your new name:' : 'Please set your name:'}
         </p>
@@ -46,9 +47,10 @@ export const PlayerNameModal = ({
               onClick={() => setModalVisible(false)}
             >
               Cancel
-            </button>}
+            </button>
+          }
         </div>
-      </div>
+      </form>
     </div>
   );
 };
