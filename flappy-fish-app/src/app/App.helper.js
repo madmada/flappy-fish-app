@@ -1,6 +1,6 @@
 // CONSTANTS, SETTINGS, HELPER FUNCTIONS
 
-export const apiUrl = 'http://localhost:8080';
+export const apiUrl = 'http://localhost:5000';
 
 export const PLAYER_RADIUS = 30;
 
