@@ -44,7 +44,6 @@ def init_app(app):
 
 
 def insert_result(result):
-    # try:
     conn = get_db()
     sql = ''' INSERT INTO results(username,score,result_date)
                   VALUES(?,?,?) '''
@@ -52,10 +51,6 @@ def insert_result(result):
     cur.execute(sql, result)
     conn.commit()
     return cur.lastrowid
-    # except:
-    #     conn.rollback()
-    # finally:
-    #     conn.close()
 
 
 def query_db(query, args=(), one=False):
