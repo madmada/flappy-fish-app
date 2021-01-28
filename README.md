@@ -57,3 +57,36 @@ Aplikacja zostanie uruchomiona pod adresem [http://localhost:3000](http://localh
     │   └── schema.sql    # Plik z bazą - podczas startu aplikacji
     └── run.sh            # Skrypt uruchomieniowy serwera
 
+## REST API
+Serwer udostępnia endpoint `/results` za pomocą którego można pobierać oraz zapisywać dane.
+
+### `GET` - pobranie rezultatów zapisanych w bazie
+
+* wywołanie bez parametrów zwraca listę wszystkich rezultatów
+* wykorzystanie parametrów:
+  * username - nazwa użytkownika
+  * top - liczba zwróconych rezultatów
+  * sort - wartość ASC lub DESC, określająca kierunek sortowania (po liczbie uzyskanych punktów) wyników
+
+powoduje zwrócenie odpowiednio przygotowanych wyników.
+ 
+Przykład wywołania z wykorzystaniem parametrów: 
+
+`http://localhost:5000/results?username=Champion&top=10&sort=asc`
+
+### `POST` - zapis uzyskanego rezultatu
+ 
+Wymagane parametry:
+ * username - nazwa użytkownika
+ * score - liczba punktów uzyskanych przez użytkownika
+ * resultDate - data rozgrywki (format ISOString)
+
+Przykład request body:
+```
+{
+    "username": "Champion",
+    "score": 100, 
+    "resultDate": "2021-01-20T20:00:00.000Z"
+}
+```
+
